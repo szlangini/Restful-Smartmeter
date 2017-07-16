@@ -24,7 +24,7 @@ public class Metric implements Serializable {
     
     String name;
     
-    Float value;
+    Double value;
     
     @ManyToOne
     Zaehler zaehler;
@@ -35,7 +35,7 @@ public class Metric implements Serializable {
     }
     
  
-    public Metric(String name, Float value, Zaehler zaehler){
+    public Metric(String name, Double value, Zaehler zaehler){
         this.name = name;
         this.value = value;
         this.ableseDatum = new Date(System.currentTimeMillis());
@@ -65,12 +65,12 @@ public class Metric implements Serializable {
 	}
 
 
-	public Float getValue() {
+	public Double getValue() {
 		return value;
 	}
 
 
-	public void setValue(Float value) {
+	public void setValue(Double value) {
 		this.value = value;
 	}
 
@@ -94,6 +94,10 @@ public class Metric implements Serializable {
 		this.ableseDatum = ableseDatum;
 	}
 
+	@SuppressWarnings("deprecation")
+	public int getInterval() {
+		return ((ableseDatum.getHours()*60) + ableseDatum.getMinutes()) / 15;
+	}
 
 	// String Representation:
     @Override

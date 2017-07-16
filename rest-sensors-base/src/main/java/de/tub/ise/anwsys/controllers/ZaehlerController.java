@@ -48,7 +48,7 @@ public class ZaehlerController {
 	public Object specificZaehler(@PathVariable("name") String name){
 		
 		List<Zaehler> zaehler = repository.findByName(name);
-		if (zaehler.get(0) != null){
+		if (!zaehler.isEmpty()){
 			return new ZaehlerNameWrapper(zaehler.get(0).getName());
 		}
 		else{
